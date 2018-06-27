@@ -1,15 +1,18 @@
-import React from 'react';
-import { Platform } from 'react-native';
-import { createStackNavigator, createBottomTabNavigator } from 'react-navigation';
+import React from 'react'
+import { Platform } from 'react-native'
+import {
+  createStackNavigator,
+  createBottomTabNavigator
+} from 'react-navigation'
 
-import TabBarIcon from '../components/TabBarIcon';
-import HomeScreen from '../screens/HomeScreen';
-import LinksScreen from '../screens/LinksScreen';
-import SettingsScreen from '../screens/SettingsScreen';
+import TabBarIcon from '../components/TabBarIcon'
+import HomeScreen from '../screens/HomeScreen'
+import CartScreen from '../screens/CartScreen'
+import SettingsScreen from '../screens/SettingsScreen'
 
 const HomeStack = createStackNavigator({
-  Home: HomeScreen,
-});
+  Home: HomeScreen
+})
 
 HomeStack.navigationOptions = {
   tabBarLabel: 'Home',
@@ -22,39 +25,47 @@ HomeStack.navigationOptions = {
           : 'md-information-circle'
       }
     />
-  ),
-};
+  )
+}
 
-const LinksStack = createStackNavigator({
-  Links: LinksScreen,
-});
+const CartStack = createStackNavigator({
+  Cart: CartScreen
+})
 
-LinksStack.navigationOptions = {
-  tabBarLabel: 'Links',
+CartStack.navigationOptions = {
+  tabBarLabel: 'Cart',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-link${focused ? '' : '-outline'}` : 'md-link'}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-cart${focused ? '' : '-outline'}`
+          : 'md-cart'
+      }
     />
-  ),
-};
+  )
+}
 
 const SettingsStack = createStackNavigator({
-  Settings: SettingsScreen,
-});
+  Settings: SettingsScreen
+})
 
 SettingsStack.navigationOptions = {
   tabBarLabel: 'Settings',
   tabBarIcon: ({ focused }) => (
     <TabBarIcon
       focused={focused}
-      name={Platform.OS === 'ios' ? `ios-options${focused ? '' : '-outline'}` : 'md-options'}
+      name={
+        Platform.OS === 'ios'
+          ? `ios-options${focused ? '' : '-outline'}`
+          : 'md-options'
+      }
     />
-  ),
-};
+  )
+}
 
 export default createBottomTabNavigator({
   HomeStack,
-  LinksStack,
-  SettingsStack,
-});
+  CartStack,
+  SettingsStack
+})
